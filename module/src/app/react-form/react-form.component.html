@@ -1,0 +1,26 @@
+<ion-card [formGroup]="form">
+  <ion-card-header>
+     <h2>Параметри матриці</h2> 
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label>Raw: </ion-label>
+      <ion-input  type="number" formControlName="rows"></ion-input>
+    </ion-item>
+    <ng-container *ngIf="hasErrorRows()">
+      <ion-label >
+        {{ printErrorRows() }}
+      </ion-label>
+    </ng-container > 
+    <ion-item>
+      <ion-label>Column: </ion-label>
+      <ion-input  type="number" formControlName="cols"></ion-input>
+    </ion-item>
+    <ng-container *ngIf="hasErrorCols()">
+      <ion-label>
+        {{ printErrorCols() }}
+      </ion-label>
+    </ng-container> 
+    
+  </ion-card-content>
+</ion-card>

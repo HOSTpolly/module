@@ -1,0 +1,65 @@
+
+<ion-header [translucent]="true">
+ </ion-header>
+ 
+ <ion-content [fullscreen]="true" >
+ 
+  <ion-card class="card">
+         <ion-card-header>
+ 
+             <ion-card-title>
+                 <h1> Створення матриці</h1>
+ 
+             </ion-card-title>
+             <ion-list>
+                 <ion-radio-group value="biff" (ionChange)="radioGroupChange($event)" #radioGroup>
+                     <ion-list-header>
+                         <ion-label class="radio_title">
+                             Оберіть форму
+                         </ion-label>
+                     </ion-list-header>
+ 
+                     <ion-item>
+                         <ion-label>Вести значення автоматично(рандомним чином)
+                         </ion-label>
+                         <ion-radio mode="ios" slot="start" value="1" name="reactive_forms"></ion-radio>
+                     </ion-item>
+                     <ion-item>
+                         <ion-label>Вести значення в ручну
+                         </ion-label>
+                         <ion-radio mode="ios" slot="start" value="2" name="forms_all"></ion-radio>
+                     </ion-item>
+                     <ion-item>
+                         <ion-label>Скрити все
+                         </ion-label>
+                         <ion-radio mode="ios" slot="start" value="3" name="no_forms"></ion-radio>
+                     </ion-item>
+                 </ion-radio-group>
+             </ion-list>
+ 
+         </ion-card-header>
+         <div id="temp_form" *ngIf="hideTF" class="card_content">
+            <h2>Random
+            </h2>
+            <app-react-form [form]="form"></app-react-form>
+            <app-matrix *ngIf="inputMatrix$ && this.form.valid " [matrix$]="inputMatrix$"></app-matrix>
+            <ion-label *ngIf="averageNumber$ && this.form.valid">Average Number: {{ averageNumber$ | async | number:'1.0-2' }}</ion-label>
+            <h4>Перетворена матриця</h4>
+            <app-matrix *ngIf="outputMatrix$ && this.form.valid " [matrix$]="outputMatrix$">Перетворена матриця: </app-matrix>
+        </div>
+         <div id="react_form" *ngIf="hideRF" class="card_content">
+             <h2>By hand
+             </h2>
+             <app-react-form [form]="form"></app-react-form>
+             <app-matrix-form [matrixForm]="matrixForm" *ngIf="this.form.valid"></app-matrix-form>
+             <ion-label *ngIf="averageNumber$ && this.form.valid">Average Number: {{ handAverageNumber$ | async | number:'1.0-2' }}</ion-label>
+             <app-matrix *ngIf="handOutputMatrix$ && this.form.valid" [matrix$]="handOutputMatrix$"></app-matrix>
+         </div>
+     </ion-card>
+     <ion-card>
+ 
+     </ion-card>
+ 
+  
+ </ion-content>
+ 

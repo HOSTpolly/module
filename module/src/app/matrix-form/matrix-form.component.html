@@ -1,0 +1,7 @@
+<ion-grid *ngIf="matrixForm" [formGroup]="matrixForm">
+  <ion-row *ngFor="let a of getArrays(matrixForm); let arrayIndex = index" [formArrayName]="arrayIndex">
+    <ion-col *ngFor="let control of getControls(a); let colIndex = index">
+      <ion-input [formControlName]="colIndex" type="number"></ion-input>
+    </ion-col>
+  </ion-row>
+</ion-grid>

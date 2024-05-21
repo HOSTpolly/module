@@ -1,0 +1,9 @@
+<ion-grid>
+  <ion-row *ngFor="let row of matrix$ | async">
+    <ion-col *ngFor="let number of row">
+      <ion-label>
+        {{ (number | number:'1.0-2') }}
+      </ion-label>
+    </ion-col>
+  </ion-row>
+</ion-grid>
